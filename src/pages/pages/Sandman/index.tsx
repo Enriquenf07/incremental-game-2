@@ -1,4 +1,3 @@
-import useStore from "../../../store/useStore"
 import ModalView from "../../layout/Modal/ModalView"
 import useIncreaseSkill from "./hooks/useIncreaseSkill"
 
