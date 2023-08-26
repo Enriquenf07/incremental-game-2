@@ -1,11 +1,10 @@
 import { SandmanView } from "../../pages/Sandman"
+import SettingsView from "../../pages/Settings"
 
 export default function View({index}: {index: number}){
     if (index == 1) {
         return(
-            <div>
-                oi
-            </div>
+            <SettingsView></SettingsView>
         )
     }
     if (index == 2) {
