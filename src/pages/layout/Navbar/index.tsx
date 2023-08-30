@@ -7,6 +7,8 @@ export default function Navbar({event}: {event: Dispatch<SetStateAction<number>>
             <Button event={event} index={1}>Settings</Button>
             <Button event={event} index={2}>Home</Button>
             <Button event={event} index={3}>Jobs</Button>
+            <Button event={event} index={4}>Shop</Button>
+            <Button event={event} index={5}>Pet</Button>
         </div>
     )
 }

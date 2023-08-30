@@ -6,18 +6,20 @@ function gameLoop(lastDate: number) {
     const increaseSkill = useStore.getState().increaseSkill
     const toJSON = useStore.getState().toJson
     const toEncoded = useStore.getState().toEncoded
-    const setSkillMax = useStore.getState().setSkillMax
-    const meditate = useStore.getState().meditate
     const skillPerSec = useStore.getState().skillPerSec
     const setSkillPerSec = useStore.getState().setSkillPerSec
+    const setGold = useStore.getState().setGold
+    const gold = useStore.getState().gold
+    const jobOne = useStore.getState().jobOne
+    const generatorOne = useStore.getState().generatorOne
     if (currentTime > lastDate){
           const tick = (currentTime - lastDate) / 1000
           increaseSkill(tick * skillPerSec)
+          setGold(gold + tick * jobOne)
         } 
-    setSkillPerSec()
+    setSkillPerSec(generatorOne)
     toJSON()
     toEncoded()
-    setSkillMax(100 + meditate * 10)
 
     return currentTime;
   }
@@ -27,27 +29,31 @@ export function updateGame(){
   const storageObject = JSON.parse(storage);
   const changeSkill = useStore.getState().changeSkill
   const changeForestUp = useStore.getState().setForestUp
-  const changeMeditate = useStore.getState().setMeditate
   const setGeneratorOne = useStore.getState().setGeneratorOne
+  const setJobOne = useStore.getState().setJobOne
+  const setName = useStore.getState().setName
   changeSkill(parseFloat(storageObject.skill))
   changeForestUp(parseInt(storageObject.forestUp))
-  changeMeditate(parseInt(storageObject.meditate))
   setGeneratorOne(parseInt(storageObject.generatorOne))
+  setJobOne(parseInt(storageObject.jobOne))
+  setName(storageObject.name)
 }
   
 export function useGameLogic() {
     const [lastDate, setLastDate] = useState(Date.now());
     const toDecoded = useStore(state => state.toDecoded)
     const storageEncoded = useStore(state => state.storageEncoded)
-    const [setSkillMax, meditate] = useStore(state => [state.setSkillMax, state.meditate])
+
+    const [times, setTimes] = useState(0)
 
     useEffect(() => {
       if (storageEncoded != ''){
         toDecoded()
         updateGame()
-      }
+      }   
       
       const timer = setInterval(() => {
+        setTimes(prev => prev + 0.2)
         setLastDate((prevLastDate) => {
           return gameLoop(prevLastDate);
         });
