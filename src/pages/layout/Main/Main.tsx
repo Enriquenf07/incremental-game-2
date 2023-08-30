@@ -12,8 +12,7 @@ function Main() {
                 <Navbar event={setView}></Navbar>
                 <InfoDisplay></InfoDisplay> 
             </div>
-            
-            <div className="flex gap-4"> 
+            <div className="flex gap-4 pt-10"> 
                 <View index={view}></View>
             </div>
         </div> 

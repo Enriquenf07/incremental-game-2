@@ -1,14 +1,6 @@
-import useStore from "../../../../store/useStore"
-
-
-const useIncreaseSkill = () => {
-    const [skill, increase] = useStore((state) => [state.skill, state.increase])
+export const useIncreaseSkill = (skill: number, max: number, increase: (by: number) => void) => {
     const onClickIncrease = (q: number) => {
-        if (skill < 100) {
-            increase(q)
-        }
+        increase(q)
     }
     return onClickIncrease
 }
-
-export default useIncreaseSkill
