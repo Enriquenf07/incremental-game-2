@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New tab shop
 - New tab pets
 - Name
+- Mobile support
 
 ## [0.0.2] - 2023-08-29
 ### Added
