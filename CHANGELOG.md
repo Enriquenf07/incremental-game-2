@@ -7,8 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [unreleased] 
-- Jobs
-- Upgrades
+### Added
+- New tab jobs
+- New currency Gold
+- New tab shop
+- New tab pets
+- Name
 
 ## [0.0.2] - 2023-08-29
 ### Added
