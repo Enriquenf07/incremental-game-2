@@ -1,10 +1,11 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Navbar from "../Navbar"
 import View from "../View"
 import InfoDisplay from "../InfoDisplay"
 
+
 function Main() {
-    const [view, setView] = useState<number>(2)
+    const [view, setView] = useState<number>(2)   
 
     return(
         <div className="w-[80%] h-fit flex gap-10">

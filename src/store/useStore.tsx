@@ -7,15 +7,16 @@ interface StoreState {
   storage: string
   storageEncoded: string
   message: string
-  meditate: number
   forestIsActive: boolean
   forestUp: number
   skillPerSec: number
   generatorOne: number
+  jobOne: number
+  gold: number
+  name: string
 
   increaseSkill: (by: number) => void
   setSkillMax: (newMax: number) => void
-  increaseMeditate: (by: number) => void
   toJson: () => void
   toEncoded: () => void
   toDecoded: () => void
@@ -25,9 +26,11 @@ interface StoreState {
   setEncoded: (save: string) => void
   setForestFlag: (flag: boolean) => void
   setForestUp: (q: number) => void
-  setMeditate: (q: number) => void
-  setSkillPerSec: () => void
+  setSkillPerSec: (n: number) => void
   setGeneratorOne: (n: number) => void
+  setJobOne: (n: number) => void
+  setGold: (n: number) => void
+  setName: (n: string) => void
   }
 
 
@@ -39,13 +42,15 @@ const useStore = create<StoreState>()(
     storage: '',    
     storageEncoded: '',
     message: '',
-    meditate: 0,
     forestIsActive: false,
     forestUp: 0,
     skillPerSec: 0,
     generatorOne: 0,
+    jobOne: 0,
+    gold: 0,
+    name: '',
 
-    toJson: () => set((state) => ({storage: JSON.stringify({'skill': '' + state.skill, 'meditate': '' + state.meditate, 'forestUp': '' + state.forestUp, 'generatorOne': '' + state.generatorOne})})),
+    toJson: () => set((state) => ({storage: JSON.stringify({'skill': '' + state.skill, 'gold': '' + state.gold, 'forestUp': '' + state.forestUp, 'generatorOne': '' + state.generatorOne, 'jobOne': '' + state.jobOne, 'name': state.name})})),
     toEncoded: () => set((state) => ({storageEncoded: btoa(state.storage)})),
     resetEncoded: () => set({storageEncoded: ''}),
     toDecoded: () => set((state) => ({storage: atob(state.storageEncoded)})),
@@ -54,12 +59,13 @@ const useStore = create<StoreState>()(
     setSkillMax: (newMax) => set(({ skillMax: newMax })),
     setMessage: (message) => set({message: message}),
     setEncoded: (save) => set({storageEncoded: save}),
-    increaseMeditate: (by) => set(state => ({meditate: state.meditate + by})),
-    setMeditate: (q) => set({meditate: q}),
     setForestFlag: (flag) => set({forestIsActive: flag}),
     setForestUp: (q) => set({forestUp: q}),
-    setSkillPerSec: () => set((state) => ({skillPerSec: state.generatorOne})),
-    setGeneratorOne: (newState) => set({generatorOne: newState})
+    setSkillPerSec: (newState) => set({skillPerSec: newState}),
+    setGeneratorOne: (newState) => set({generatorOne: newState}),
+    setJobOne: (newState) => set({jobOne: newState}),
+    setGold: (newState) => set({gold: newState}),
+    setName: (newState) => set({name: newState}),
   }),
   {
     name: 'save',

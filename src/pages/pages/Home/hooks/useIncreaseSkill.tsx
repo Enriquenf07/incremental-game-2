@@ -1,4 +1,4 @@
-export const useIncreaseSkill = (skill: number, max: number, increase: (by: number) => void) => {
+export const useIncreaseSkill = (increase: (by: number) => void) => {
     const onClickIncrease = (q: number) => {
         increase(q)
     }
