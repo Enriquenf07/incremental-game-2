@@ -8,6 +8,10 @@ interface StoreState {
   storageEncoded: string
   message: string
   meditate: number
+  forestIsActive: boolean
+  forestUp: number
+  skillPerSec: number
+  generatorOne: number
 
   increaseSkill: (by: number) => void
   setSkillMax: (newMax: number) => void
@@ -19,6 +23,11 @@ interface StoreState {
   changeSkill: (newSkill: number) => void
   setMessage: (message: string) => void
   setEncoded: (save: string) => void
+  setForestFlag: (flag: boolean) => void
+  setForestUp: (q: number) => void
+  setMeditate: (q: number) => void
+  setSkillPerSec: () => void
+  setGeneratorOne: (n: number) => void
   }
 
 
@@ -31,9 +40,12 @@ const useStore = create<StoreState>()(
     storageEncoded: '',
     message: '',
     meditate: 0,
+    forestIsActive: false,
+    forestUp: 0,
+    skillPerSec: 0,
+    generatorOne: 0,
 
-
-    toJson: () => set((state) => ({storage: JSON.stringify({'skill': '' + state.skill})})),
+    toJson: () => set((state) => ({storage: JSON.stringify({'skill': '' + state.skill, 'meditate': '' + state.meditate, 'forestUp': '' + state.forestUp, 'generatorOne': '' + state.generatorOne})})),
     toEncoded: () => set((state) => ({storageEncoded: btoa(state.storage)})),
     resetEncoded: () => set({storageEncoded: ''}),
     toDecoded: () => set((state) => ({storage: atob(state.storageEncoded)})),
@@ -42,7 +54,12 @@ const useStore = create<StoreState>()(
     setSkillMax: (newMax) => set(({ skillMax: newMax })),
     setMessage: (message) => set({message: message}),
     setEncoded: (save) => set({storageEncoded: save}),
-    increaseMeditate: (by) => set(state => ({meditate: state.meditate + by}))
+    increaseMeditate: (by) => set(state => ({meditate: state.meditate + by})),
+    setMeditate: (q) => set({meditate: q}),
+    setForestFlag: (flag) => set({forestIsActive: flag}),
+    setForestUp: (q) => set({forestUp: q}),
+    setSkillPerSec: () => set((state) => ({skillPerSec: state.generatorOne})),
+    setGeneratorOne: (newState) => set({generatorOne: newState})
   }),
   {
     name: 'save',

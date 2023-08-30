@@ -3,15 +3,18 @@ import useStore from "../store/useStore";
 
 function gameLoop(lastDate: number) {
     const currentTime = Date.now()
-    const tick = (currentTime - lastDate) / 1000
     const increaseSkill = useStore.getState().increaseSkill
     const toJSON = useStore.getState().toJson
     const toEncoded = useStore.getState().toEncoded
     const setSkillMax = useStore.getState().setSkillMax
     const meditate = useStore.getState().meditate
-
-    increaseSkill(tick * 0)
-
+    const skillPerSec = useStore.getState().skillPerSec
+    const setSkillPerSec = useStore.getState().setSkillPerSec
+    if (currentTime > lastDate){
+          const tick = (currentTime - lastDate) / 1000
+          increaseSkill(tick * skillPerSec)
+        } 
+    setSkillPerSec()
     toJSON()
     toEncoded()
     setSkillMax(100 + meditate * 10)
@@ -22,9 +25,14 @@ function gameLoop(lastDate: number) {
 export function updateGame(){
   const storage = useStore.getState().storage;
   const storageObject = JSON.parse(storage);
-  const changeSkill = useStore.getState().changeSkill;
-  changeSkill(parseFloat(storageObject.skill));
-
+  const changeSkill = useStore.getState().changeSkill
+  const changeForestUp = useStore.getState().setForestUp
+  const changeMeditate = useStore.getState().setMeditate
+  const setGeneratorOne = useStore.getState().setGeneratorOne
+  changeSkill(parseFloat(storageObject.skill))
+  changeForestUp(parseInt(storageObject.forestUp))
+  changeMeditate(parseInt(storageObject.meditate))
+  setGeneratorOne(parseInt(storageObject.generatorOne))
 }
   
 export function useGameLogic() {
@@ -39,8 +47,6 @@ export function useGameLogic() {
         updateGame()
       }
       
-      
-
       const timer = setInterval(() => {
         setLastDate((prevLastDate) => {
           return gameLoop(prevLastDate);

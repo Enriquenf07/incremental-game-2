@@ -1,10 +1,12 @@
 import useStore from "../../../../store/useStore"
 
-export function useCopySave(){
+
+export function useCopySave(): [() => void, string]{
     const saveEncoded = useStore(state => state.storageEncoded)
     const copySave = () => {
         navigator.clipboard.writeText(saveEncoded)
     }
-    return copySave
+    const message = 'Saved in clipboard'
+    return [copySave, message]
 }
 
