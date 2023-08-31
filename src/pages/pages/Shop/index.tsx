@@ -9,7 +9,7 @@ import { buyUpgrade } from "../helper/buyUpgrade";
 
 export default function Shop(){
     const [gold, setGold, setSkill, skill, setBookOne, bookOne] = useStore(state => [state.gold, state.setGold, state.changeSkill, state.skill, state.setBookOne, state.bookOne])
-
+    const [itemOne, setItemOne] = useStore(state => [state.itemOne, state.setItemOne])
 
     return (
         <ModalView>
@@ -38,6 +38,11 @@ export default function Shop(){
                     <FaBook size={'20px'} color={'#2b4672'}/>
                     <h2 className="font-bold">Muscle Alteration Book</h2>
                     <p className="text-sm">Costs: {formatNumber(1000)} Gold</p>  
+                </Button>: null}
+                {itemOne < 7 ? <Button event={() => buyUpgrade(itemOne, 2500 + 250 * itemOne, setItemOne, gold, setGold)}>
+                    <PiPlantLight size={'20px'} color={'#92A8D1'}/>
+                    <h2 className="font-bold">Frost Flower</h2>
+                    <p className="text-sm">Costs: {formatNumber(2500 + 250 * itemOne)} Gold</p>  
                 </Button>: null}
             </section>
         </ModalView>

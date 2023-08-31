@@ -16,6 +16,7 @@ interface StoreState {
   name: string
   bookOne: number
   knowledge: number
+  itemOne: number
 
   increaseSkill: (by: number) => void
   setSkillMax: (newMax: number) => void
@@ -35,6 +36,8 @@ interface StoreState {
   setName: (n: string) => void
   setBookOne: (n: number) => void
   setKnowledge: (n: number) => void
+  setItemOne: (n: number) => void
+
   }
 
 
@@ -55,9 +58,10 @@ const useStore = create<StoreState>()(
     name: '',
     bookOne: 0,
     knowledge: 0,
+    itemOne: 0,
 
     toJson: () => set((state) => ({storage: JSON.stringify({
-      'version': '0.0.3',
+      'version': '0.1.0',
       'skill': state.skill,
       'gold': state.gold,
       'forestUp': state.forestUp,
@@ -66,6 +70,7 @@ const useStore = create<StoreState>()(
       'name': state.name,
       'bookOne': state.bookOne,
       'knowledge': state.knowledge,
+      'itemOne': state.itemOne
   })})),
     toEncoded: () => set((state) => ({storageEncoded: btoa(state.storage)})),
     resetEncoded: () => set({storageEncoded: ''}),
@@ -84,6 +89,7 @@ const useStore = create<StoreState>()(
     setName: (newState) => set({name: newState}),
     setBookOne: (newState) => set({bookOne: newState}),
     setKnowledge: (newState) => set({knowledge: newState}),
+    setItemOne: (newState) => set({itemOne: newState})
   }),
   {
     name: 'save',
