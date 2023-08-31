@@ -42,12 +42,12 @@ export default function Books(){
                             <p className="text-sm">level {books.b}/100</p>
                             <p className="text-sm">Add {books.b} Knowledge per sec</p>
                         </div>
-                        <Button event={() => buyUpgrade2('b', books, (300 * books.b)**1.02, setBooks, knowledge, setKnowledge)}>
-                            <p>For next level: {formatNumber((300 * books.b) ** 1.02)} knowledge</p> 
+                        <Button event={() => buyUpgrade2('b', books, (30 * books.b)**1.02, setBooks, knowledge, setKnowledge)}>
+                            <p>For next level: {formatNumber((30 * books.b)** 1.02)} knowledge</p> 
                         </Button>
                     </div>
                 :null}
-                {bookOne >= 1 && books.c <= 100 ?
+                {bookOne >= 100 && books.c <= 100 ?
                     <div className="flex w-[95%]  items-center justify-between pb-8 border-0 border-b border-white">
                         <div>
                             <h2 className="font-bold">Golden Bone Formula</h2>
