@@ -13,9 +13,9 @@ export default function Navbar({event}: {event: Dispatch<SetStateAction<number>>
         <div className="flex items-center gap-3 flex-wrap justify-center">
             <Button event={event} index={1}> <IoSettingsOutline size={'20px'} /> </Button>
             <Button event={event} index={2}> <AiOutlineHome size={'20px'}/> </Button>
-            {forest > 0 ? <Button event={event} index={3}> <BsBriefcase size={'20px'} /> </Button> : null}
-            {forest > 0 ? <Button event={event} index={4}> <AiOutlineShop size={'20px'}/> </Button> : null}
-            {bookOne >= 0 ? <Button event={event} index={5}> <CiBookmarkCheck size={'20px'}/> </Button> : null}
+            {forest > 4 ? <Button event={event} index={3}> <BsBriefcase size={'20px'} /> </Button> : null}
+            {forest > 7 ? <Button event={event} index={4}> <AiOutlineShop size={'20px'}/> </Button> : null}
+            {bookOne > 0 ? <Button event={event} index={5}> <CiBookmarkCheck size={'20px'}/> </Button> : null}
         </div>
     )
 }

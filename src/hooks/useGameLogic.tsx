@@ -43,6 +43,7 @@ export function updateGame(){
   const setName = useStore.getState().setName
   const setBookOne = useStore.getState().setBookOne
   const setGold = useStore.getState().setGold
+  const setKnowledge = useStore.getState().setKnowledge
   changeSkill(storageObject.skill)
   changeForestUp(storageObject.forestUp)
   setGeneratorOne(storageObject.generatorOne)
@@ -50,6 +51,7 @@ export function updateGame(){
   setName(storageObject.name)
   setBookOne(storageObject.bookOne)
   setGold(storageObject.gold)
+  setKnowledge(storageObject.knowledge)
 }
   
 export function useGameLogic() {

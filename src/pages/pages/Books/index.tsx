@@ -16,8 +16,8 @@ export default function Books(){
                         <p className="text-sm">2x multiplier per level</p>
                         <p className="text-sm">1 Knowledge per sec</p>
                     </div>
-                    <Button event={() => buyUpgrade(bookOne, 1000 * bookOne, setBookOne, knowledge, setKnowledge)}>
-                        <p>For next level: {formatNumber(1000 * bookOne)} knowledge</p> 
+                    <Button event={() => buyUpgrade(bookOne, (250 * bookOne)**1.05, setBookOne, knowledge, setKnowledge)}>
+                        <p>For next level: {formatNumber((250 * bookOne) ** 1.05)} knowledge</p> 
                     </Button>
                 </div>
             </section>

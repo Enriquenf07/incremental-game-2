@@ -17,7 +17,7 @@ export function SandmanView(){
     const [message, setMessage] = useState('')
 
     const activateForest = () => {
-        if (skill >= 250 * forestUp ** 2){
+        if (skill >= 100 * forestUp ** 2){
             setForestFlag(true)
             setTimeout(() => {
                 setForestFlag(false)
@@ -51,7 +51,7 @@ export function SandmanView(){
                 </Button>
                 <Button event={() => activateForest()}>
                     <h2 className="font-bold">Go to the forest</h2>
-                    <p className="text-sm">Need: {formatNumber(250 * forestUp ** 2)}</p>
+                    <p className="text-sm">Need: {formatNumber(100 * forestUp ** 2)}</p>
                 </Button>
                 <Button event={() => buyUpgrade(generatorOne, 100 * 1.15 ** generatorOne, setGeneratorOne, skill, setSkill)}>
                     <h2 className="font-bold">Meditate</h2>

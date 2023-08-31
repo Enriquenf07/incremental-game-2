@@ -56,7 +56,17 @@ const useStore = create<StoreState>()(
     bookOne: 0,
     knowledge: 0,
 
-    toJson: () => set((state) => ({storage: JSON.stringify({'version': '0.0.3', 'skill': state.skill, 'gold': state.gold, 'forestUp': state.forestUp, 'generatorOne': state.generatorOne, 'jobOne': state.jobOne, 'name': state.name, 'bookOne': state.bookOne})})),
+    toJson: () => set((state) => ({storage: JSON.stringify({
+      'version': '0.0.3',
+      'skill': state.skill,
+      'gold': state.gold,
+      'forestUp': state.forestUp,
+      'generatorOne': state.generatorOne,
+      'jobOne': state.jobOne,
+      'name': state.name,
+      'bookOne': state.bookOne,
+      'knowledge': state.knowledge,
+  })})),
     toEncoded: () => set((state) => ({storageEncoded: btoa(state.storage)})),
     resetEncoded: () => set({storageEncoded: ''}),
     toDecoded: () => set((state) => ({storage: atob(state.storageEncoded)})),
