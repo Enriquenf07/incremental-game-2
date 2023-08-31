@@ -1,6 +1,10 @@
 import { create } from 'zustand'
 import {persist} from 'zustand/middleware'
 
+interface Books{
+  [key: string]: number
+}
+
 interface StoreState {
   skill: number
   skillMax: number
@@ -17,6 +21,7 @@ interface StoreState {
   bookOne: number
   knowledge: number
   itemOne: number
+  books: Books
 
   increaseSkill: (by: number) => void
   setSkillMax: (newMax: number) => void
@@ -37,9 +42,8 @@ interface StoreState {
   setBookOne: (n: number) => void
   setKnowledge: (n: number) => void
   setItemOne: (n: number) => void
-
+  setBooks: (n: Books) => void
   }
-
 
 const useStore = create<StoreState>()(
   persist(
@@ -59,9 +63,10 @@ const useStore = create<StoreState>()(
     bookOne: 0,
     knowledge: 0,
     itemOne: 0,
-
+    books: {'a': 0, 'b': 0, 'c':0},
+    
     toJson: () => set((state) => ({storage: JSON.stringify({
-      'version': '0.1.0',
+      'version': '0.2.0',
       'skill': state.skill,
       'gold': state.gold,
       'forestUp': state.forestUp,
@@ -70,8 +75,9 @@ const useStore = create<StoreState>()(
       'name': state.name,
       'bookOne': state.bookOne,
       'knowledge': state.knowledge,
-      'itemOne': state.itemOne
-  })})),
+      'itemOne': state.itemOne,
+      'books': state.books
+    })})),
     toEncoded: () => set((state) => ({storageEncoded: btoa(state.storage)})),
     resetEncoded: () => set({storageEncoded: ''}),
     toDecoded: () => set((state) => ({storage: atob(state.storageEncoded)})),
@@ -89,7 +95,8 @@ const useStore = create<StoreState>()(
     setName: (newState) => set({name: newState}),
     setBookOne: (newState) => set({bookOne: newState}),
     setKnowledge: (newState) => set({knowledge: newState}),
-    setItemOne: (newState) => set({itemOne: newState})
+    setItemOne: (newState) => set({itemOne: newState}),
+    setBooks: (newState) => set({books: newState}),
   }),
   {
     name: 'save',

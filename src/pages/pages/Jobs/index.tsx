@@ -5,7 +5,7 @@ import useStore from "../../../store/useStore";
 import { formatNumber } from "../../../helper/formatNumber";
 
 export default function Jobs(){
-    const [skill, setSkill, setJobOne, jobOne] = useStore(state => [state.skill, state.changeSkill, state.setJobOne, state.jobOne])
+    const [skill, setSkill, setJobOne, jobOne, books] = useStore(state => [state.skill, state.changeSkill, state.setJobOne, state.jobOne, state.books])
     return (
         <ModalView>
             <section className="flex items-center flex-wrap gap-10 py-4 justify-center">
@@ -13,7 +13,7 @@ export default function Jobs(){
                     <div>
                         <h2 className="font-bold">Rune Designer</h2>
                         <p className="text-sm">level {jobOne}</p>
-                        <p className="text-sm">{jobOne} gold per sec</p>
+                        <p className="text-sm">{jobOne * (books.a + 1)} gold per sec</p>
                     </div>
                     <Button event={() => buyUpgrade(jobOne, 1000 * 1.3 ** jobOne, setJobOne, skill, setSkill)}>
                         <p>For next level: {formatNumber(1000 * 1.3 ** jobOne)} skill</p> 

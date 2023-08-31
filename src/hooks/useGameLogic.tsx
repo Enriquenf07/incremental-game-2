@@ -16,16 +16,18 @@ function gameLoop(lastDate: number) {
     const setKnowledge = useStore.getState().setKnowledge
     const knowledge = useStore.getState().knowledge
     const itemOne = useStore.getState().itemOne
+    const books = useStore.getState().books
+    const forestUp = useStore.getState().forestUp
     if (currentTime > lastDate){
           const tick = (currentTime - lastDate) / 1000
           increaseSkill(tick * skillPerSec)
-          setGold(gold + tick * jobOne)
-          setKnowledge(knowledge + tick * bookOne)
+          setGold(gold + tick * (jobOne * (books.a + 1)))
+          bookOne > 0 ? setKnowledge(knowledge + tick * (books.b + 1)): null
         } 
     if (bookOne > 0) {
-     setSkillPerSec((generatorOne * (bookOne + 1)) * 2 ** itemOne)
+     setSkillPerSec((generatorOne * (bookOne + 1) * (books.c * 10 + 1)) * 2 ** (itemOne + Math.floor(forestUp/25)))
     }
-    else{setSkillPerSec(generatorOne)}
+    else{setSkillPerSec(generatorOne * 2 ** (Math.floor(forestUp/25)))}
     
     toJSON()
     toEncoded()
@@ -46,6 +48,8 @@ export function updateGame(){
   const setGold = useStore.getState().setGold
   const setKnowledge = useStore.getState().setKnowledge
   const setItemOne = useStore.getState().setItemOne
+  const setBooks = useStore.getState().setBooks
+
   if (storageObject.version =='0.0.3'){
     changeSkill(storageObject.skill)
     changeForestUp(storageObject.forestUp)
@@ -59,6 +63,18 @@ export function updateGame(){
 
     return
   }
+  if (storageObject.version == '0.1.0'){
+    changeSkill(storageObject.skill)
+    changeForestUp(storageObject.forestUp)
+    setGeneratorOne(storageObject.generatorOne)
+    setJobOne(storageObject.jobOne)
+    setName(storageObject.name)
+    setBookOne(storageObject.bookOne)
+    setGold(storageObject.gold)
+    setKnowledge(storageObject.knowledge)
+    setItemOne(storageObject.itemOne)
+     return
+  }
   changeSkill(storageObject.skill)
   changeForestUp(storageObject.forestUp)
   setGeneratorOne(storageObject.generatorOne)
@@ -68,8 +84,7 @@ export function updateGame(){
   setGold(storageObject.gold)
   setKnowledge(storageObject.knowledge)
   setItemOne(storageObject.itemOne)
-
-  
+  setBooks(storageObject.books)
 }
   
 export function useGameLogic() {
