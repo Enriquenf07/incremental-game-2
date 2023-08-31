@@ -14,6 +14,8 @@ interface StoreState {
   jobOne: number
   gold: number
   name: string
+  bookOne: number
+  knowledge: number
 
   increaseSkill: (by: number) => void
   setSkillMax: (newMax: number) => void
@@ -31,6 +33,8 @@ interface StoreState {
   setJobOne: (n: number) => void
   setGold: (n: number) => void
   setName: (n: string) => void
+  setBookOne: (n: number) => void
+  setKnowledge: (n: number) => void
   }
 
 
@@ -49,8 +53,10 @@ const useStore = create<StoreState>()(
     jobOne: 0,
     gold: 0,
     name: '',
+    bookOne: 0,
+    knowledge: 0,
 
-    toJson: () => set((state) => ({storage: JSON.stringify({'skill': '' + state.skill, 'gold': '' + state.gold, 'forestUp': '' + state.forestUp, 'generatorOne': '' + state.generatorOne, 'jobOne': '' + state.jobOne, 'name': state.name})})),
+    toJson: () => set((state) => ({storage: JSON.stringify({'version': '0.0.3', 'skill': state.skill, 'gold': state.gold, 'forestUp': state.forestUp, 'generatorOne': state.generatorOne, 'jobOne': state.jobOne, 'name': state.name, 'bookOne': state.bookOne})})),
     toEncoded: () => set((state) => ({storageEncoded: btoa(state.storage)})),
     resetEncoded: () => set({storageEncoded: ''}),
     toDecoded: () => set((state) => ({storage: atob(state.storageEncoded)})),
@@ -66,6 +72,8 @@ const useStore = create<StoreState>()(
     setJobOne: (newState) => set({jobOne: newState}),
     setGold: (newState) => set({gold: newState}),
     setName: (newState) => set({name: newState}),
+    setBookOne: (newState) => set({bookOne: newState}),
+    setKnowledge: (newState) => set({knowledge: newState}),
   }),
   {
     name: 'save',

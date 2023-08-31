@@ -12,14 +12,23 @@ function gameLoop(lastDate: number) {
     const gold = useStore.getState().gold
     const jobOne = useStore.getState().jobOne
     const generatorOne = useStore.getState().generatorOne
+    const bookOne = useStore.getState().bookOne
+    const setKnowledge = useStore.getState().setKnowledge
+    const knowledge = useStore.getState().knowledge
     if (currentTime > lastDate){
           const tick = (currentTime - lastDate) / 1000
           increaseSkill(tick * skillPerSec)
           setGold(gold + tick * jobOne)
+          setKnowledge(knowledge + tick * bookOne)
         } 
-    setSkillPerSec(generatorOne)
+    if (bookOne > 0) {
+      bookOne > 1 ? setSkillPerSec(generatorOne * (bookOne ** 2)): setSkillPerSec(generatorOne * 2)
+    }
+    else{setSkillPerSec(generatorOne)}
+    
     toJSON()
     toEncoded()
+    
 
     return currentTime;
   }
@@ -32,19 +41,21 @@ export function updateGame(){
   const setGeneratorOne = useStore.getState().setGeneratorOne
   const setJobOne = useStore.getState().setJobOne
   const setName = useStore.getState().setName
-  changeSkill(parseFloat(storageObject.skill))
-  changeForestUp(parseInt(storageObject.forestUp))
-  setGeneratorOne(parseInt(storageObject.generatorOne))
-  setJobOne(parseInt(storageObject.jobOne))
+  const setBookOne = useStore.getState().setBookOne
+  const setGold = useStore.getState().setGold
+  changeSkill(storageObject.skill)
+  changeForestUp(storageObject.forestUp)
+  setGeneratorOne(storageObject.generatorOne)
+  setJobOne(storageObject.jobOne)
   setName(storageObject.name)
+  setBookOne(storageObject.bookOne)
+  setGold(storageObject.gold)
 }
   
 export function useGameLogic() {
     const [lastDate, setLastDate] = useState(Date.now());
     const toDecoded = useStore(state => state.toDecoded)
     const storageEncoded = useStore(state => state.storageEncoded)
-
-    const [times, setTimes] = useState(0)
 
     useEffect(() => {
       if (storageEncoded != ''){
@@ -53,7 +64,6 @@ export function useGameLogic() {
       }   
       
       const timer = setInterval(() => {
-        setTimes(prev => prev + 0.2)
         setLastDate((prevLastDate) => {
           return gameLoop(prevLastDate);
         });

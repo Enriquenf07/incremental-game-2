@@ -1,9 +1,13 @@
 import { ReactNode } from "react";
+import {AiOutlineInfoCircle} from 'react-icons/ai'
 
 export default function Button({children, event}: {children: ReactNode, event:() => void}){
     return(
-        <button onClick={event} className="transition ease-in-out text-black bg-[#DFCFBE] active:bg-[#2b4672] p-4 w-[20rem] rounded-xl flex flex-col items-center">
-            {children}
-        </button>
+        <div className="flex gap-3 items-center text-xl">
+            <button onClick={event} className="transition ease-in-out text-black bg-[#DFCFBE] active:bg-[#a89785] p-4 w-[10rem] rounded-xl text-sm flex flex-col items-center">
+                {children}
+            </button>
+            <button><AiOutlineInfoCircle/></button>
+        </div>
     )
 }

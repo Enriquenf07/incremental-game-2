@@ -8,12 +8,10 @@ function Main() {
     const [view, setView] = useState<number>(2)   
 
     return(
-        <div className="w-[80%] h-fit flex gap-10">
-            <div className="flex flex-col gap-10 w-[15rem]">
-                <Navbar event={setView}></Navbar>
-                <InfoDisplay></InfoDisplay> 
-            </div>
-            <div className="flex gap-4 pt-10"> 
+        <div className="w-[90%] lg:w-[60%] h-fit flex flex-col gap-6 pt-8 pb-10">
+            <Navbar event={setView}></Navbar>
+            <div className="flex gap-4 items-start flex-col"> 
+                <InfoDisplay></InfoDisplay>
                 <View index={view}></View>
             </div>
         </div> 

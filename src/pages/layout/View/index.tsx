@@ -2,7 +2,7 @@ import Jobs from "../../pages/Jobs"
 import { SandmanView } from "../../pages/Home"
 import SettingsView from "../../pages/Settings"
 import Shop from "../../pages/Shop"
-import Upgrades from "../../pages/Pet"
+import Books from "../../pages/Books"
 
 export default function View({index}: {index: number}){
     if (index == 1) {
@@ -27,7 +27,7 @@ export default function View({index}: {index: number}){
     } 
     if (index == 5) {
         return(
-            <Upgrades/>
+            <Books/>
         )
     }  
 }
