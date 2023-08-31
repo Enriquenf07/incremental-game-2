@@ -20,9 +20,11 @@ function SettingsView(){
         }, 5000)
     }
 
+    // eyJza2lsbCI6Ijg4MDAwIiwiZ29sZCI6IjAiLCJmb3Jlc3RVcCI6IjAiLCJnZW5lcmF0b3JPbmUiOiIwIiwiam9iT25lIjoiMCIsIm5hbWUiOiIiLCJib29rT25lIjowfQ==
+
     return(
         <ModalView>
-            <section className="flex gap-10 flex-wrap">
+            <section className="flex items-center flex-wrap gap-10 py-4 justify-center">
                 <button className="flex justify-center p-3 rounded-xl bg-green-700 w-[20rem]" onClick={() => resetGame()}>Reset Game</button>
                 <button className="flex justify-center p-3 rounded-xl bg-green-700 w-[20rem]" onClick={() => handleExport()}>Export Save</button>
                 <input className="w-[20rem] text-black pl-2 outline-green-700" type="text" onChange={(e) => setSaveImport(e.target.value)}/>
