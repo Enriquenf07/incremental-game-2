@@ -1,7 +1,5 @@
 import {useGameLogic} from "./hooks/useGameLogic"
 import Main from "./pages/layout/Main/Main"
-import useStore from "./store/useStore"
-import { useHotkeys } from 'react-hotkeys-hook'
 
 function App() {
 

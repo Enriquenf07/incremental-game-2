@@ -9,7 +9,7 @@ import { useState} from 'react'
 
 
 export function SandmanView(){
-    const [skill, skillMod, skillMax, setSkill] = useStore((state) => [state.skill, state.increaseSkill, state.skillMax, state.changeSkill])
+    const [skill, skillMod, setSkill] = useStore((state) => [state.skill, state.increaseSkill, state.changeSkill])
     const [forestIsActive, setForestFlag, setForestUp, forestUp] = useStore(state => [state.forestIsActive, state.setForestFlag, state.setForestUp, state.forestUp])
     const [generatorOne, setGeneratorOne] = useStore(state => [state.generatorOne, state.setGeneratorOne])
     const increaseSkill = useIncreaseSkill(skillMod)

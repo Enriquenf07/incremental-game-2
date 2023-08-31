@@ -67,9 +67,10 @@ export function useGameLogic() {
         setLastDate((prevLastDate) => {
           return gameLoop(prevLastDate);
         });
-        
       }, 200);
   
-      return () => clearInterval(timer);
+      if (lastDate >= 0){
+        return () => clearInterval(timer);
+      }
     }, []);
   }
