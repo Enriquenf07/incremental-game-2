@@ -3,6 +3,8 @@ import { SandmanView } from "../../pages/Home"
 import SettingsView from "../../pages/Settings"
 import Shop from "../../pages/Shop"
 import Books from "../../pages/Books"
+import PrestigeView from "../../pages/Prestige"
+import TrainigView from "../../pages/Training"
 
 export default function View({index}: {index: number}){
     if (index == 1) {
@@ -29,5 +31,15 @@ export default function View({index}: {index: number}){
         return(
             <Books/>
         )
-    }  
+    } 
+    if (index == 6) {
+        return(
+            <PrestigeView/>
+        )
+    } 
+    if (index == 7){
+        return(
+            <TrainigView/>
+        )
+    }    
 }

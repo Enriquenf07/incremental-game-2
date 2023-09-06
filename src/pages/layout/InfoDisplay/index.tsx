@@ -10,6 +10,7 @@ export default function InfoDisplay(){
     const [nameEditingFlag, setNameEditingFlag] = useState(false)
     const [name, setName] = useStore(state => [state.name, state.setName])
     const knowledge = useStore(state => state.knowledge)
+    const [health, level] = useStore(state => [state.health, state.level])
     
     return(
         <div className="bg-zinc-800 rounded-xl flex w-full flex-col justify-center items-center py-12 px-8">
