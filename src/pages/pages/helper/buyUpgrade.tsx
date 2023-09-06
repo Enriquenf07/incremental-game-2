@@ -19,8 +19,7 @@ export function buyUpgrade2(index: string, books: Books, price: number, set: (q:
 
 export function decreaseUpgrade(index: string, books: Books, price: number, set: (q: Books) => void, skill: number, setSkill: (q: number) => void){
     const updatedBooks = { ...books, [index]: books[index] - 1 };
-    if(skill >= price){
-        set(updatedBooks);
-        setSkill(skill + price)
-    }
+    set(updatedBooks);
+    setSkill(skill + price)
+
 }

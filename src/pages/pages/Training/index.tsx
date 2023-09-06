@@ -41,7 +41,7 @@ export default function TrainigView(){
                 <section className="flex items-center flex-wrap gap-10 justify-center">
                     <button className="h-full w-full bg-blue-400 py-4 rounded-xl text-zinc-800 hover:bg-blue-300" onClick={() => upLevel()}>
                         <h2 className="font-bold">Upgrade Level</h2>
-                        <p className="text-sm">Price: {formatNumber(1000 ** level)}</p>
+                        <p className="text-sm">Price: {formatNumber(10000 ** (level + techniques.a + techniques.b + techniques.c + techniques.d))}</p>
                     </button>
                 </section>
             </ModalView>

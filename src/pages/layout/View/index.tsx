@@ -5,6 +5,7 @@ import Shop from "../../pages/Shop"
 import Books from "../../pages/Books"
 import PrestigeView from "../../pages/Prestige"
 import TrainigView from "../../pages/Training"
+import BossView from "../../pages/Boss"
 
 export default function View({index}: {index: number}){
     if (index == 1) {
@@ -40,6 +41,11 @@ export default function View({index}: {index: number}){
     if (index == 7){
         return(
             <TrainigView/>
+        )
+    } 
+    if (index == 8){
+        return(
+            <BossView/>
         )
     }    
 }

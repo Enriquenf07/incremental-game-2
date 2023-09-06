@@ -1,6 +1,5 @@
 import { create } from 'zustand'
 import {persist} from 'zustand/middleware'
-import Decimal from 'break_infinity.js'
 
 interface Books{
   [key: string]: number
@@ -35,6 +34,8 @@ interface StoreState {
   power: number
   speed: number
   precision: number
+  boss: number
+  isFighting: boolean
 
   increaseSkill: (by: number) => void
   toJson: () => void
@@ -65,6 +66,8 @@ interface StoreState {
   setPower: (n: number) => void
   setSpeed: (n: number) => void
   setPrecision: (n: number) => void
+  setBoss: (n: number) => void
+  setIsFighting: (n: boolean) => void
   }
 
 const useStore = create<StoreState>()(
@@ -89,14 +92,15 @@ const useStore = create<StoreState>()(
     items: {'a': 0, 'b': 0},
     time: 0,
     pauseGame: false,
-    techniques: {'a': 0, 'b': 0, 'c':0, 'd': 0},
     tecPoints: 0,
+    techniques: {'a': 0, 'b': 0, 'c':0, 'd': 0},
     power: 0,
     speed: 0,
     precision: 0,
-    
+    boss: 0,
+    isFighting: false,    
     toJson: () => set((state) => ({storage: JSON.stringify({
-      'version': '0.2.0',
+      'version': '1.0.0b',
       'skill': state.skill,
       'gold': state.gold,
       'generatorOne': state.generatorOne,
@@ -109,6 +113,12 @@ const useStore = create<StoreState>()(
       'level': state.level,
       'items': state.items,
       'time': state.time,
+      'techniques': state.techniques,
+      'power': state.power,
+      'speed': state.speed,
+      'health': state.health,
+      'precision': state.precision,
+      'boss': state.boss,
     })})),
     toEncoded: () => set((state) => ({storageEncoded: btoa(state.storage)})),
     resetEncoded: () => set({storageEncoded: ''}),
@@ -144,6 +154,11 @@ const useStore = create<StoreState>()(
       items: {'a': 0, 'b': 0},
       level: 0,
       time: 0,
+      health: 0,
+      power: 0,
+      speed: 0,
+      precision: 0,
+      boss: 0,
     }),
     setPause: (newState) => set({pauseGame: newState}),
     setTechniques: (newState) => set({techniques: newState}),
@@ -151,6 +166,8 @@ const useStore = create<StoreState>()(
     setPower: (newState) => set({power: newState}),
     setSpeed: (newState) => set({speed: newState}),
     setPrecision: (newState) => set({precision: newState}),
+    setBoss: (newState) => set({boss: newState}),
+    setIsFighting: (newState) => set({isFighting: newState}),
   }),
   {
     name: 'save',

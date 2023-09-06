@@ -29,6 +29,7 @@ function gameLoop(lastDate: number) {
     const speed = useStore.getState().speed
     const setPrecision = useStore.getState().setPrecision
     const precision = useStore.getState().precision
+    const boss = useStore.getState().boss
     
 
     if (currentTime > lastDate){
@@ -43,7 +44,7 @@ function gameLoop(lastDate: number) {
       setPrecision(precision + (tick * techniques.d))
     } 
     if (bookOne > 0) {
-     setSkillPerSec((generatorOne * (bookOne + 1) * (books.c * 10 + 1)) * (2 ** (itemOne)) * prestige)
+     setSkillPerSec((generatorOne * (bookOne + 1) * (books.c * 10 + 1)) * (2 ** (itemOne + boss)) * prestige)
     }
     else{setSkillPerSec(generatorOne * (2 ** (itemOne)) * prestige)}
     
@@ -68,17 +69,15 @@ export function updateGame(){
   const setItems = useStore.getState().setItems
   const setLevel = useStore.getState().setLevel
   const setTime = useStore.getState().setTime
+  const setTechniques = useStore.getState().setTechniques
+  const setHealth = useStore.getState().setHealth
+  const setPower = useStore.getState().setPower
+  const setSpeed = useStore.getState().setSpeed
+  const setPrecision = useStore.getState().setPrecision
+  const resetEncoded = useStore.getState().resetEncoded
 
-  if (storageObject.version =='0.0.3'){
-    changeSkill(storageObject.skill)
-    setGeneratorOne(storageObject.generatorOne)
-    setJobOne(storageObject.jobOne)
-    setName(storageObject.name)
-    setBookOne(storageObject.bookOne)
-    setGold(storageObject.gold)
-    setKnowledge(storageObject.knowledge)
-    setItemOne(0)
-
+  if (storageObject.version != '1.0.0b'){
+    resetEncoded()
     return
   }
   changeSkill(storageObject.skill)
@@ -93,13 +92,17 @@ export function updateGame(){
   setItems(storageObject.items)
   setLevel(storageObject.level)
   setTime(storageObject.time)
+  setTechniques(storageObject.techniques)
+  setHealth(storageObject.health)
+  setPower(storageObject.power)
+  setSpeed(storageObject.speed)
+  setPrecision(storageObject.precision)
 }
   
 export function useGameLogic() {
     const [lastDate, setLastDate] = useState(Date.now());
     const toDecoded = useStore(state => state.toDecoded)
     const storageEncoded = useStore(state => state.storageEncoded)
-    const pause = useStore(state => state.pauseGame)
 
     useEffect(() => {
         if (storageEncoded != ''){

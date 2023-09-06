@@ -57,18 +57,6 @@ export default function Shop(){
                     <h2 className="font-bold">Productivity</h2>
                     <p className="text-sm">Costs: {formatNumber(10000)} Gold</p>  
                 </Button>: null}
-                <Button event={() =>  buyUpgrade2('a', items, 10, setItems, gold, setGold)}>
-                    <img src={armour} style={{'width': '25px'}} alt="" />
-                    <h2 className="font-bold">Armor</h2>
-                    <p>{items.a}</p>
-                    <p className="text-sm">Costs: {formatNumber(10000)} Gold</p>  
-                </Button>
-                <Button event={() =>  buyUpgrade2('b', items, 10, setItems, gold, setGold)}>
-                    <img src={katana} style={{'width': '25px'}} alt="" />
-                    <h2 className="font-bold">Katana</h2>
-                    <p>{items.b}</p>
-                    <p className="text-sm">Costs: {formatNumber(10000)} Gold</p>  
-                </Button>
             </section>
         </ModalView>
     )
